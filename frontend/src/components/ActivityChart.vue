@@ -84,12 +84,12 @@ const props = defineProps({
     type: String,
     default: ''
   },
-  // Legend and tooltip name for the series, e.g. "Edits" or "Editors"
+  // Legend label, e.g. "Edits" or "Editors"
   metricLabel: {
     type: String,
     default: 'Edits'
   },
-  // Y-axis title, e.g. "Edit Count" or "Editor Count"
+  // Y-axis title and tooltip value label, e.g. "Edit Count" or "Editor Count"
   countLabel: {
     type: String,
     default: 'Edit Count'
@@ -132,7 +132,7 @@ const renderChart = () => {
       line: { color: COLOR_PROGRESSIVE, width: 2, shape: 'spline' },
       marker: { color: COLOR_PROGRESSIVE, size: 6 },
       customdata: lineTrace.x.map(hoverDate),
-      hovertemplate: `<b>%{customdata}</b><br>${props.metricLabel}: %{y}<extra></extra>`
+      hovertemplate: `<b>%{customdata}</b><br>${props.countLabel}: %{y}<extra></extra>`
     },
     {
       ...peaksTrace,
@@ -147,7 +147,7 @@ const renderChart = () => {
       textposition: 'top center',
       textfont: { color: COLOR_DESTRUCTIVE, size: 11, family: 'sans-serif' },
       customdata: (peaksTrace.x || []).map(hoverDate),
-      hovertemplate: `<b>Peak Alert</b><br>Date: %{customdata}<br>${props.metricLabel}: %{y}<extra></extra>`
+      hovertemplate: `<b>Peak Alert</b><br>Date: %{customdata}<br>${props.countLabel}: %{y}<extra></extra>`
     }
   ]
 
